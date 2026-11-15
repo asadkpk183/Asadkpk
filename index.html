@@ -1,3 +1,4 @@
+Here is the complete and clean HTML code for the KPK License Verification Portal as provided in your document:
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,12 +66,12 @@
     }
   </style>
 </head>
-<body class="bg-white text-[#1f2937] antialiased">
+<body class="bg-white text-[#1f2937] antialiased min-h-screen flex flex-col">
 
   <!-- Top Header -->
   <header class="w-full bg-white sticky top-0 z-40 border-b border-gray-100">
     <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-2.5">
+      <a href="javascript:void(0)" onclick="goHome()" class="flex items-center gap-2.5">
         <svg class="w-11 h-11 shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <polygon points="50,3 61,19 81,13 81,33 97,44 85,60 93,79 73,82 65,98 50,86 35,98 27,82 7,79 15,60 3,44 19,33 19,13 39,19" fill="#111827" stroke="#facc15" stroke-width="2.5"/>
           <polygon points="50,10 59,23 75,18 75,35 88,44 78,57 85,73 68,75 61,89 50,79 39,89 32,75 15,73 22,57 12,44 25,35 25,18 41,23" fill="#facc15"/>
@@ -85,7 +86,7 @@
         </div>
       </a>
 
-      <button id="menuBtn" aria-label="Open Navigation Menu" class="p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition">
+      <button id="menuBtn" aria-label="Open Navigation Menu" class="p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition cursor-pointer">
         <svg class="w-8 h-8 text-black" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="4" y="6" width="24" height="2.6" rx="1" fill="currentColor"/>
           <rect x="4" y="12" width="24" height="2.6" rx="1" fill="currentColor"/>
@@ -97,152 +98,148 @@
 
     <nav id="mobileMenu" class="hidden max-w-md mx-auto bg-white border-t border-gray-200 px-5 py-3 shadow-lg">
       <ul class="space-y-2.5 text-sm font-medium text-gray-800">
-        <li><a href="#verify-section" class="block py-1 hover:text-[#1f4226]">License Verification</a></li>
-        <li><a href="#smart-card-section" class="block py-1 hover:text-[#1f4226]">Smart Driving Licence</a></li>
-        <li><a href="#eticketing-section" class="block py-1 hover:text-[#1f4226]">E-Ticketing Gadgets</a></li>
-        <li><a href="#roving-eye-section" class="block py-1 hover:text-[#1f4226]">Roving Eye Surveillance</a></li>
-        <li><a href="#footer-section" class="block py-1 hover:text-[#1f4226]">Contact &amp; Socials</a></li>
+        <li><a href="javascript:void(0)" onclick="goHome(); closeMenu();" class="block py-1 font-bold text-[#1f4226]">Home</a></li>
+        <li><a href="javascript:void(0)" onclick="goHome(); closeMenu();" class="block py-1 hover:text-[#1f4226]">License Verification</a></li>
+        <li><a href="#smart-card-section" onclick="goHome(); closeMenu();" class="block py-1 hover:text-[#1f4226]">Smart Driving Licence</a></li>
+        <li><a href="#eticketing-section" onclick="goHome(); closeMenu();" class="block py-1 hover:text-[#1f4226]">E-Ticketing Gadgets</a></li>
+        <li><a href="#roving-eye-section" onclick="goHome(); closeMenu();" class="block py-1 hover:text-[#1f4226]">Roving Eye Surveillance</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Main Container -->
-  <main class="max-w-md mx-auto px-4 pb-8">
+  <main class="max-w-md w-full mx-auto px-4 pb-8 flex-1">
 
-    <!-- Hero Title Section -->
-    <section id="verify-section" class="relative pt-8 pb-5 text-center overflow-hidden">
-      <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.06]">
-        <svg class="w-52 h-52" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="100" cy="100" r="85" stroke="#14532d" stroke-width="8" stroke-dasharray="12 6"/>
-          <circle cx="100" cy="100" r="64" stroke="#14532d" stroke-width="4"/>
-          <path d="M108 66C89 66 74 81 74 100C74 119 89 134 108 134C116 134 123 131 129 126C120 128 111 126 105 119C94 109 94 91 105 81C111 74 120 72 129 74C123 69 116 66 108 66Z" fill="#14532d"/>
-          <polygon points="124,86 128,97 140,97 130,104 134,115 124,108 114,115 118,104 108,97 120,97" fill="#14532d"/>
-        </svg>
-      </div>
-
-      <h1 class="relative z-10 font-slab text-[26px] leading-[1.3] font-bold text-[#1f4226] tracking-tight">
-        Welcome To KPK License<br />Verification Portal
-      </h1>
-    </section>
-
-    <!-- Sage-Green CNIC Verification Box -->
-    <section class="sage-box relative overflow-hidden px-5 pt-6 pb-8 shadow-sm">
-      <div class="pointer-events-none absolute right-2 bottom-2 opacity-[0.07] select-none text-right leading-tight">
-        <div class="text-sm font-extrabold text-[#14532d]">KHYBER PAKHTUNKHWA</div>
-        <div class="text-xs font-bold text-[#14532d]">TRAFFIC POLICE</div>
-      </div>
-
-      <form id="verifyForm" class="relative z-10">
-        <label for="cnicInput" class="block text-[15px] font-medium text-[#2f3e32] mb-2.5">
-          CNIC Number <span class="text-red-500 font-bold">*</span>
-        </label>
-
-        <input
-          id="cnicInput"
-          type="text"
-          inputmode="numeric"
-          maxlength="13"
-          placeholder="Type CNIC Number without dash"
-          class="cnic-pill-input w-full px-5 py-3 text-[14.5px] text-gray-800 placeholder-gray-500 shadow-xs"
-          required
-        />
-
-        <div class="mt-4 flex items-center justify-between gap-2">
-          <button
-            type="submit"
-            id="submitBtn"
-            class="bg-[#4b91e2] hover:bg-[#3b82d6] active:scale-[0.99] text-white font-medium text-[15px] px-6 py-2 rounded-[6px] shadow-xs transition cursor-pointer"
-          >
-            Submit
-          </button>
+    <!-- HOME VIEW: Search Box + 3 Showcase Cards + Socials -->
+    <div id="homeView">
+      <section id="verify-section" class="relative pt-8 pb-5 text-center overflow-hidden">
+        <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.06]">
+          <svg class="w-52 h-52" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="85" stroke="#14532d" stroke-width="8" stroke-dasharray="12 6"/>
+            <circle cx="100" cy="100" r="64" stroke="#14532d" stroke-width="4"/>
+            <path d="M108 66C89 66 74 81 74 100C74 119 89 134 108 134C116 134 123 131 129 126C120 128 111 126 105 119C94 109 94 91 105 81C111 74 120 72 129 74C123 69 116 66 108 66Z" fill="#14532d"/>
+            <polygon points="124,86 128,97 140,97 130,104 134,115 124,108 114,115 118,104 108,97 120,97" fill="#14532d"/>
+          </svg>
         </div>
-      </form>
-    </section>
 
-    <!-- Verification Result Card -->
-    <section id="resultBox" class="hidden mt-6 bg-white rounded-2xl border border-gray-200 shadow-lg p-5 relative">
-      <button
-        type="button"
-        onclick="closeResult()"
-        aria-label="Close Result"
-        class="absolute top-3 right-3 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-2.5 py-1 rounded-md cursor-pointer"
-      >
-        ✕ Close
-      </button>
+        <h1 class="relative z-10 font-slab text-[26px] leading-[1.3] font-bold text-[#1f4226] tracking-tight">
+          Welcome To KPK License<br />Verification Portal
+        </h1>
+      </section>
 
-      <div id="resultContent"></div>
-    </section>
+      <!-- Sage-Green CNIC Verification Box -->
+      <section class="sage-box relative overflow-hidden px-5 pt-6 pb-8 shadow-sm">
+        <div class="pointer-events-none absolute right-2 bottom-2 opacity-[0.07] select-none text-right leading-tight">
+          <div class="text-sm font-extrabold text-[#14532d]">KHYBER PAKHTUNKHWA</div>
+          <div class="text-xs font-bold text-[#14532d]">TRAFFIC POLICE</div>
+        </div>
 
-    <!-- Showcase Card 1: State of the art driving licence -->
-    <section id="smart-card-section" class="mt-7">
-      <div class="card-elevated relative overflow-hidden">
-        <div class="relative w-full aspect-[16/10] bg-gray-100 overflow-hidden">
-          <img
-            src="Image_289e11.JPG"
-            alt="State of the art driving licence"
-            class="w-full h-full object-cover object-center block"
+        <form id="verifyForm" class="relative z-10">
+          <label for="cnicInput" class="block text-[15px] font-medium text-[#2f3e32] mb-2.5">
+            CNIC Number <span class="text-red-500 font-bold">*</span>
+          </label>
+
+          <input
+            id="cnicInput"
+            type="text"
+            inputmode="numeric"
+            maxlength="13"
+            placeholder="Type CNIC Number without dash"
+            class="cnic-pill-input w-full px-5 py-3 text-[14.5px] text-gray-800 placeholder-gray-500 shadow-xs"
+            required
           />
 
-          <div class="red-ribbon-banner absolute bottom-0 left-0 w-[88%] py-2 px-4 z-10">
-            <p class="text-white font-normal text-[17px] tracking-wide leading-snug">
-              State of the art driving licence
-            </p>
+          <div class="mt-4 flex items-center justify-between gap-2">
+            <button
+              type="submit"
+              id="submitBtn"
+              class="bg-[#4b91e2] hover:bg-[#3b82d6] active:scale-[0.99] text-white font-medium text-[15px] px-6 py-2 rounded-[6px] shadow-xs transition cursor-pointer"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Showcase Card 1 -->
+      <section id="smart-card-section" class="mt-7">
+        <div class="card-elevated relative overflow-hidden">
+          <div class="relative w-full aspect-[16/10] bg-gray-100 overflow-hidden">
+            <img
+              src="Image_289e11.JPG"
+              alt="State of the art driving licence"
+              class="w-full h-full object-cover object-center block"
+            />
+            <div class="red-ribbon-banner absolute bottom-0 left-0 w-[88%] py-2 px-4 z-10">
+              <p class="text-white font-normal text-[17px] tracking-wide leading-snug">
+                State of the art driving licence
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Showcase Card 2: E-TICKETING GADGETS -->
-    <section id="eticketing-section" class="mt-7">
-      <div class="card-elevated relative overflow-hidden bg-white">
-        <img
-          src="Image_94a8c2.JPG"
-          alt="E-Ticketing Gadgets - Printer Module and Smart Phone Android"
-          class="w-full h-auto block object-contain"
-        />
-      </div>
-    </section>
+      <!-- Showcase Card 2 -->
+      <section id="eticketing-section" class="mt-7">
+        <div class="card-elevated relative overflow-hidden bg-white">
+          <img
+            src="Image_94a8c2.JPG"
+            alt="E-Ticketing Gadgets"
+            class="w-full h-auto block object-contain"
+          />
+        </div>
+      </section>
 
-    <!-- Showcase Card 3: Roving Eye -->
-    <section id="roving-eye-section" class="mt-7">
-      <div class="card-elevated relative overflow-hidden bg-white">
-        <img
-          src="ca3998.JPG"
-          alt="Roving Eye - Body Camera, WiFi Device, Network Video Recorder, Static Camera, Tracker"
-          class="w-full h-auto block object-contain"
-        />
-      </div>
-    </section>
+      <!-- Showcase Card 3 -->
+      <section id="roving-eye-section" class="mt-7">
+        <div class="card-elevated relative overflow-hidden bg-white">
+          <img
+            src="ca3998.JPG"
+            alt="Roving Eye"
+            class="w-full h-auto block object-contain"
+          />
+        </div>
+      </section>
 
-    <!-- Social Section: Review Us On -->
-    <section id="footer-section" class="mt-9 mb-6 text-center">
-      <h3 class="text-[19px] font-bold text-[#1f2937] mb-4">Review Us On</h3>
+      <!-- Social Section -->
+      <section id="footer-section" class="mt-9 mb-6 text-center">
+        <h3 class="text-[19px] font-bold text-[#1f2937] mb-4">Review Us On</h3>
+        <div class="flex items-center justify-center gap-4">
+          <a href="#footer-section" aria-label="Facebook Official" class="w-12 h-12 rounded-full bg-[#1a239e] hover:opacity-90 transition flex items-center justify-center text-white shadow-sm">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+          </a>
+          <a href="#footer-section" aria-label="X Twitter Official" class="w-12 h-12 rounded-full bg-[#388e46] hover:opacity-90 transition flex items-center justify-center text-white shadow-sm">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#footer-section" aria-label="Facebook Community" class="w-12 h-12 rounded-full bg-[#388e46] hover:opacity-90 transition flex items-center justify-center text-white shadow-sm">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+          </a>
+        </div>
+      </section>
+    </div>
 
-      <div class="flex items-center justify-center gap-4">
-        <a href="#footer-section" aria-label="Facebook Official" class="w-12 h-12 rounded-full bg-[#1a239e] hover:opacity-90 transition flex items-center justify-center text-white shadow-sm">
-          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-            <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/>
-          </svg>
-        </a>
+    <!-- RESULT ONLY VIEW: Shown after Search (Hides everything below) -->
+    <section id="resultView" class="hidden pt-5">
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-5">
+        <div id="resultContent"></div>
 
-        <a href="#footer-section" aria-label="X Twitter Official" class="w-12 h-12 rounded-full bg-[#388e46] hover:opacity-90 transition flex items-center justify-center text-white shadow-sm">
-          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-        </a>
-
-        <a href="#footer-section" aria-label="Facebook Community" class="w-12 h-12 rounded-full bg-[#388e46] hover:opacity-90 transition flex items-center justify-center text-white shadow-sm">
-          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-            <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/>
-          </svg>
-        </a>
+        <!-- Back to Home / Search Again Button -->
+        <div class="mt-5 pt-3 border-t border-gray-100 text-center">
+          <button
+            type="button"
+            onclick="goHome()"
+            class="w-full bg-[#1f4226] hover:bg-[#16311c] text-white font-semibold text-sm py-2.5 rounded-xl shadow-xs transition cursor-pointer"
+          >
+            ← Back to Home / Search Again
+          </button>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- Green Divider + Scroll-to-Top Square + Copyright Footer -->
-  <footer class="w-full relative pt-3 pb-5 bg-white">
+  <!-- Footer -->
+  <footer id="pageFooter" class="w-full relative pt-3 pb-5 bg-white">
     <div class="w-full h-[2px] bg-[#2f7d44] relative">
       <button
         id="scrollTopBtn"
@@ -257,25 +254,34 @@
     </div>
 
     <div class="max-w-md mx-auto px-4 pt-3 text-center text-[12px] text-gray-500">
-      Copyright © 2026 KPK DLIMS | <a href="#verify-section" class="text-gray-600 hover:underline">Verify Your License</a>
+      Copyright © 2026 KPK DLIMS | <a href="javascript:void(0)" onclick="goHome()" class="text-gray-600 hover:underline">Verify Your License</a>
     </div>
   </footer>
 
   <script>
-    // Mobile Menu Toggle
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Restrict CNIC input to digits only
+    function closeMenu() {
+      mobileMenu.classList.add('hidden');
+    }
+
+    function goHome() {
+      document.getElementById('resultView').classList.add('hidden');
+      document.getElementById('homeView').classList.remove('hidden');
+      document.getElementById('pageFooter').classList.remove('hidden');
+      document.getElementById('cnicInput').value = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     const cnicInput = document.getElementById('cnicInput');
     cnicInput.addEventListener('input', (e) => {
       e.target.value = e.target.value.replace(/\D/g, '').slice(0, 13);
     });
 
-    // Default Fallback Portrait SVG
     const defaultAvatarSVG = "data:image/svg+xml;utf8," + encodeURIComponent(`
       <svg xmlns="http://www.w3.org/2000/svg" width="180" height="220" viewBox="0 0 180 220">
         <rect width="180" height="220" fill="#f3f4f6"/>
@@ -288,7 +294,6 @@
 
     const verifyForm = document.getElementById('verifyForm');
     const submitBtn = document.getElementById('submitBtn');
-    const resultBox = document.getElementById('resultBox');
     const resultContent = document.getElementById('resultContent');
 
     verifyForm.addEventListener('submit', async (e) => {
@@ -296,12 +301,7 @@
       const cnic = cnicInput.value.trim();
 
       if (cnic.length < 12 || cnic.length > 13) {
-        resultBox.classList.remove('hidden');
-        resultContent.innerHTML = `
-          <div class="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs font-medium mt-4">
-            Please enter a valid 13-digit CNIC number without dashes.
-          </div>
-        `;
+        alert('Please enter a valid 13-digit CNIC number without dashes.');
         return;
       }
 
@@ -310,7 +310,6 @@
 
       let liveRecords = {};
       try {
-        // Fetch directly from GitHub Raw first (instant update without waiting for Vercel rebuild)
         const res = await fetch(`${GITHUB_RAW_BASE}/records.json?t=${Date.now()}`);
         if (res.ok) {
           liveRecords = await res.json();
@@ -329,19 +328,22 @@
       submitBtn.textContent = 'Submit';
 
       const record = liveRecords[cnic];
-      resultBox.classList.remove('hidden');
+
+      // Hide Home View & Footer -> Show ONLY Search Result View
+      document.getElementById('homeView').classList.add('hidden');
+      document.getElementById('pageFooter').classList.add('hidden');
+      document.getElementById('resultView').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
       if (!record) {
         resultContent.innerHTML = `
-          <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-sm font-medium mt-4 text-center">
+          <div class="p-5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-sm font-medium text-center">
             No Driving License record found for CNIC: <strong>${cnic}</strong>
           </div>
         `;
-        resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         return;
       }
 
-      // Support embedded base64 photoData OR instant GitHub Raw photo URL
       let photoUrl = defaultAvatarSVG;
       if (record.photoData) {
         photoUrl = record.photoData;
@@ -350,8 +352,7 @@
       }
 
       resultContent.innerHTML = `
-        <!-- Top Centered Passport Photo Card -->
-        <div class="flex justify-center pt-2 pb-6">
+        <div class="flex justify-center pt-1 pb-6">
           <div class="w-40 h-48 rounded-xl overflow-hidden bg-white shadow-md border border-gray-200">
             <img
               src="${photoUrl}"
@@ -362,7 +363,6 @@
           </div>
         </div>
 
-        <!-- Stacked Detail Rows -->
         <div class="detail-box">
           <div class="detail-label">Cnic</div>
           <div class="detail-value">${record.cnic}</div>
@@ -393,13 +393,8 @@
           <div class="detail-value font-bold text-[#b91c1c]">${record.renewalDate}</div>
         </div>
       `;
-
-      resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
-
-    function closeResult() {
-      resultBox.classList.add('hidden');
-    }
   </script>
 </body>
 </html>
+
