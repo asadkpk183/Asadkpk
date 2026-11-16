@@ -112,10 +112,12 @@
     <!-- HOME VIEW: Search Box + 3 Showcase Cards + Socials -->
     <div id="homeView">
       <section id="verify-section" class="relative pt-8 pb-5 text-center overflow-hidden">
-        <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.06]">
-          <img src="bg.png" class="w-56 h-56 object-contain" />
+        <!-- Background Emblem Watermark -->
+        <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-15 z-0">
+          <img src="bg.png" alt="Watermark" class="w-56 h-56 object-contain" />
+        </div>
 
-
+        <!-- Title Words -->
         <h1 class="relative z-10 font-slab text-[26px] leading-[1.3] font-bold text-[#1f4226] tracking-tight">
           Welcome To KPK License<br />Verification Portal
         </h1>
@@ -212,12 +214,11 @@
       </section>
     </div>
 
-    <!-- RESULT ONLY VIEW: Shown after Search (Hides everything below) -->
+    <!-- RESULT ONLY VIEW: Shown after Search -->
     <section id="resultView" class="hidden pt-5">
       <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-5">
         <div id="resultContent"></div>
 
-        <!-- Back to Home / Search Again Button -->
         <div class="mt-5 pt-3 border-t border-gray-100 text-center">
           <button
             type="button"
@@ -323,7 +324,6 @@
 
       const record = liveRecords[cnic];
 
-      // Hide Home View & Footer -> Show ONLY Search Result View
       document.getElementById('homeView').classList.add('hidden');
       document.getElementById('pageFooter').classList.add('hidden');
       document.getElementById('resultView').classList.remove('hidden');
@@ -391,4 +391,3 @@
   </script>
 </body>
 </html>
-
