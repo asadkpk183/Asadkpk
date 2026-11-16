@@ -104,9 +104,10 @@
 
     <!-- HOME VIEW: Search Box + 3 Showcase Cards + Socials -->
     <div id="homeView">
+      <!-- Welcome Title Section with bgg.png Watermark -->
       <section id="verify-section" class="relative pt-8 pb-5 text-center overflow-hidden">
         <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-15 z-0">
-          <img src="bgg.png" alt="Watermark" class="w-56 h-56 object-contain" />
+          <img src="bgg.png" alt="KPK Police Watermark" class="w-56 h-56 object-contain mix-blend-multiply" />
         </div>
 
         <h1 class="relative z-10 font-slab text-[26px] leading-[1.3] font-bold text-[#1f4226] tracking-tight">
@@ -114,11 +115,16 @@
         </h1>
       </section>
 
-      <!-- Sage-Green CNIC Verification Box -->
+      <!-- Sage-Green CNIC Verification Box with bgg.png Watermark -->
       <section class="sage-box relative overflow-hidden px-5 pt-6 pb-8 shadow-sm">
-        <div class="pointer-events-none absolute right-2 bottom-2 opacity-[0.07] select-none text-right leading-tight">
-          <div class="text-sm font-extrabold text-[#14532d]">KHYBER PAKHTUNKHWA</div>
-          <div class="text-xs font-bold text-[#14532d]">TRAFFIC POLICE</div>
+        <!-- Centered Faint Emblem inside Search Box -->
+        <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-15 z-0">
+          <img src="bgg.png" alt="KPK Police Search Watermark" class="w-48 h-48 object-contain mix-blend-multiply" />
+        </div>
+
+        <div class="pointer-events-none absolute right-3 bottom-2 opacity-[0.09] select-none text-right leading-tight z-0">
+          <div class="text-xs font-extrabold text-[#14532d]">KHYBER PAKHTUNKHWA</div>
+          <div class="text-[11px] font-bold text-[#14532d]">TRAFFIC POLICE</div>
         </div>
 
         <form id="verifyForm" class="relative z-10">
@@ -336,7 +342,7 @@
         photoUrl = `${GITHUB_RAW_BASE}/${record.photo}?t=${Date.now()}`;
       }
 
-      const expireVal = record.expireDate || record.renewalDate || '-';
+      const expDate = record.expiryDate || record.renewalDate || '-';
 
       resultContent.innerHTML = `
         <div class="flex justify-center pt-1 pb-6">
@@ -386,8 +392,8 @@
         </div>
 
         <div class="detail-box mb-0">
-          <div class="detail-label">Expire Date</div>
-          <div class="detail-value font-bold text-[#b91c1c]">${expireVal}</div>
+          <div class="detail-label">Date of Expire</div>
+          <div class="detail-value font-bold text-[#b91c1c]">${expDate}</div>
         </div>
       `;
     });
