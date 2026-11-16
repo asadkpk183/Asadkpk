@@ -3,482 +3,400 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KPK DLIMS Admin Panel | GitHub Live Manager</title>
+  <title>KPK License Verification Portal | Khyber Pakhtunkhwa Traffic Police</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Poppins', sans-serif; background-color: #f3f6f4; }
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
+    .font-slab {
+      font-family: 'Arvo', Georgia, serif;
+    }
+    .card-elevated {
+      background: #ffffff;
+      border-radius: 26px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14), 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+    .red-ribbon-banner {
+      background: linear-gradient(90deg, #b90505 0%, #d60a0a 100%);
+      border-top-right-radius: 26px;
+      border-bottom-left-radius: 24px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    }
+    .sage-box {
+      background-color: #b7d1b9;
+      border-radius: 22px;
+    }
+    .cnic-pill-input {
+      border-radius: 9999px;
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      transition: all 0.2s ease;
+    }
+    .cnic-pill-input:focus {
+      outline: none;
+      border-color: #4b91e2;
+      box-shadow: 0 0 0 3px rgba(75, 145, 226, 0.25);
+    }
+    .detail-box {
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .detail-label {
+      background-color: #f3f4f6;
+      color: #4b5563;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 14px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .detail-value {
+      background-color: #ffffff;
+      color: #374151;
+      font-weight: 500;
+      font-size: 14.5px;
+      padding: 10px 14px;
+    }
   </style>
 </head>
-<body class="text-gray-800 antialiased pb-12">
+<body class="bg-white text-[#1f2937] antialiased min-h-screen flex flex-col">
 
-  <!-- Top Admin Header -->
-  <header class="bg-[#1f4226] text-white shadow-md sticky top-0 z-30">
-    <div class="max-w-lg mx-auto px-4 py-3.5 flex items-center justify-between">
-      <div>
-        <h1 class="text-base font-bold tracking-wide">KPK DLIMS Admin Panel</h1>
-        <p class="text-[11px] text-emerald-200">Direct GitHub Live Database &amp; Photo Manager</p>
-      </div>
-      <div class="flex items-center gap-2">
-        <a href="index.html" class="text-xs bg-white/15 hover:bg-white/25 px-3 py-1.5 rounded-lg font-medium transition">View Portal</a>
-        <button id="logoutBtn" onclick="logoutAdmin()" class="hidden text-xs bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg font-medium transition cursor-pointer">Logout</button>
-      </div>
+  <!-- Top Header -->
+  <header class="w-full bg-white sticky top-0 z-40 border-b border-gray-100">
+    <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="javascript:void(0)" onclick="goHome()" class="flex items-center gap-2.5">
+        <img src="bg.png" alt="KPK Traffic Police Logo" class="w-11 h-11 object-contain shrink-0" />
+        <div class="leading-tight">
+          <div class="text-[11px] font-bold tracking-tight text-[#111827]">KHYBER PAKHTUNKHWA</div>
+          <div class="text-[10.5px] font-semibold tracking-wide text-[#1f2937] text-center">TRAFFIC POLICE</div>
+        </div>
+      </a>
+
+      <button id="menuBtn" aria-label="Open Navigation Menu" class="p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition cursor-pointer">
+        <svg class="w-8 h-8 text-black" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="6" width="24" height="2.6" rx="1" fill="currentColor"/>
+          <rect x="4" y="12" width="24" height="2.6" rx="1" fill="currentColor"/>
+          <rect x="4" y="18" width="24" height="2.6" rx="1" fill="currentColor"/>
+          <rect x="4" y="24" width="24" height="2.6" rx="1" fill="currentColor"/>
+        </svg>
+      </button>
     </div>
+
+    <nav id="mobileMenu" class="hidden max-w-md mx-auto bg-white border-t border-gray-200 px-5 py-3 shadow-lg">
+      <ul class="space-y-2.5 text-sm font-medium text-gray-800">
+        <li><a href="javascript:void(0)" onclick="goHome(); closeMenu();" class="block py-1 font-bold text-[#1f4226]">Home</a></li>
+        <li><a href="javascript:void(0)" onclick="goHome(); closeMenu();" class="block py-1 hover:text-[#1f4226]">License Verification</a></li>
+        <li><a href="#smart-card-section" onclick="goHome(); closeMenu();" class="block py-1 hover:text-[#1f4226]">Smart Driving Licence</a></li>
+        <li><a href="#eticketing-section" onclick="goHome(); closeMenu();" class="block py-1 hover:text-[#1f4226]">E-Ticketing Gadgets</a></li>
+        <li><a href="#roving-eye-section" onclick="goHome(); closeMenu();" class="block py-1 hover:text-[#1f4226]">Roving Eye Surveillance</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="max-w-lg mx-auto px-4 pt-6">
+  <!-- Main Container -->
+  <main class="max-w-md w-full mx-auto px-4 pb-8 flex-1">
 
-    <!-- Step 1: GitHub Connection / Login Card -->
-    <section id="loginCard" class="bg-white rounded-2xl shadow-md border border-gray-200 p-5">
-      <h2 class="text-lg font-bold text-[#1f4226] mb-1">Connect GitHub Repository</h2>
-      <p class="text-xs text-gray-500 mb-4">Apna GitHub Token enter karein taake data aur pictures seedha aapke repo mein save hon.</p>
-
-      <form id="loginForm" class="space-y-3.5">
-        <div>
-          <label class="block text-xs font-semibold text-gray-700 mb-1">GitHub Username</label>
-          <input id="ghOwner" type="text" value="asadkpk183" required class="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-[#1f4226]" />
+    <!-- HOME VIEW: Search Box + 3 Showcase Cards + Socials -->
+    <div id="homeView">
+      <!-- Welcome Title Section with bgg.png Watermark -->
+      <section id="verify-section" class="relative pt-8 pb-5 text-center overflow-hidden">
+        <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-15 z-0">
+          <img src="bgg.png" alt="KPK Police Watermark" class="w-56 h-56 object-contain mix-blend-multiply" />
         </div>
 
-        <div>
-          <label class="block text-xs font-semibold text-gray-700 mb-1">Repository Name</label>
-          <input id="ghRepo" type="text" value="Asadkpk" required class="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-[#1f4226]" />
+        <h1 class="relative z-10 font-slab text-[26px] leading-[1.3] font-bold text-[#1f4226] tracking-tight">
+          Welcome To KPK License<br />Verification Portal
+        </h1>
+      </section>
+
+      <!-- Sage-Green CNIC Verification Box with bgg.png Watermark -->
+      <section class="sage-box relative overflow-hidden px-5 pt-6 pb-8 shadow-sm">
+        <!-- Centered Faint Emblem inside Search Box -->
+        <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-15 z-0">
+          <img src="bgg.png" alt="KPK Police Search Watermark" class="w-48 h-48 object-contain mix-blend-multiply" />
         </div>
 
-        <div>
-          <label class="block text-xs font-semibold text-gray-700 mb-1">GitHub Personal Access Token (PAT)</label>
-          <input id="ghToken" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" required class="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-[#1f4226]" />
+        <div class="pointer-events-none absolute right-3 bottom-2 opacity-[0.09] select-none text-right leading-tight z-0">
+          <div class="text-xs font-extrabold text-[#14532d]">KHYBER PAKHTUNKHWA</div>
+          <div class="text-[11px] font-bold text-[#14532d]">TRAFFIC POLICE</div>
         </div>
 
-        <button type="submit" id="connectBtn" class="w-full bg-[#1f4226] hover:bg-[#16311c] text-white font-semibold py-2.5 rounded-xl text-sm shadow transition cursor-pointer">
-          Connect &amp; Open Dashboard
-        </button>
-      </form>
-    </section>
+        <form id="verifyForm" class="relative z-10">
+          <label for="cnicInput" class="block text-[15px] font-medium text-[#2f3e32] mb-2.5">
+            CNIC Number <span class="text-red-500 font-bold">*</span>
+          </label>
 
-    <!-- Step 2: Admin Dashboard -->
-    <div id="dashboardArea" class="hidden space-y-6">
+          <input
+            id="cnicInput"
+            type="text"
+            inputmode="numeric"
+            maxlength="13"
+            placeholder="Type CNIC Number without dash"
+            class="cnic-pill-input w-full px-5 py-3 text-[14.5px] text-gray-800 placeholder-gray-500 shadow-xs"
+            required
+          />
 
-      <!-- Status Toast -->
-      <div id="statusMsg" class="hidden p-3.5 rounded-xl text-xs font-semibold"></div>
-
-      <!-- Add / Update Record Form -->
-      <section class="bg-white rounded-2xl shadow-md border border-gray-200 p-5">
-        <div class="flex items-center justify-between mb-4">
-          <h2 id="formTitle" class="text-base font-bold text-[#1f4226]">Add / Update License Record</h2>
-          <button type="button" onclick="resetForm()" class="text-xs text-gray-500 hover:text-gray-800 underline cursor-pointer">Clear Form</button>
-        </div>
-
-        <form id="recordForm" class="space-y-3.5">
-          <!-- Photo Upload + Preview -->
-          <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl border border-dashed border-gray-300">
-            <img id="photoPreview" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='96' viewBox='0 0 80 96'%3E%3Crect width='80' height='96' fill='%23e5e7eb'/%3E%3Ccircle cx='40' cy='34' r='16' fill='%239ca3af'/%3E%3Cpath d='M14 88 C14 66, 66 66, 66 88 Z' fill='%239ca3af'/%3E%3C/svg%3E" alt="Preview" class="w-16 h-20 rounded-lg object-cover border border-gray-300 bg-white shrink-0" />
-            <div class="flex-1">
-              <label class="block text-xs font-bold text-gray-700 mb-1">Passport Size Photo</label>
-              <input id="photoInput" type="file" accept="image/*" class="block w-full text-xs text-gray-600 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#4b91e2] file:text-white hover:file:bg-[#3b82d6] cursor-pointer" />
-              <p id="photoStatus" class="text-[10.5px] text-gray-500 mt-1">Photo select karein — instant preview &amp; auto-compress.</p>
-            </div>
+          <div class="mt-4 flex items-center justify-between gap-2">
+            <button
+              type="submit"
+              id="submitBtn"
+              class="bg-[#4b91e2] hover:bg-[#3b82d6] active:scale-[0.99] text-white font-medium text-[15px] px-6 py-2 rounded-[6px] shadow-xs transition cursor-pointer"
+            >
+              Submit
+            </button>
           </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-gray-700 mb-1">CNIC Number (Without Dash) *</label>
-            <input id="recCnic" type="text" inputmode="numeric" maxlength="13" placeholder="e.g. 313035622090" required class="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-[#4b91e2]" />
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Full Name *</label>
-              <input id="recName" type="text" placeholder="e.g. Husnain Nawaz" required class="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-[#4b91e2]" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Father / Husband Name *</label>
-              <input id="recFather" type="text" placeholder="e.g. Azeem Nawaz" required class="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-[#4b91e2]" />
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-gray-700 mb-1">Date of Birth (DD-MM-YYYY) *</label>
-            <input id="recDob" type="text" placeholder="e.g. 15-08-1995" required class="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-[#4b91e2]" />
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">License Number *</label>
-              <input id="recLicenseNo" type="text" placeholder="e.g. 801124752" required class="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-[#4b91e2]" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">License Type *</label>
-              <input id="recType" type="text" value="M.CYCLE+M.CAR/JEEP" required class="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-[#4b91e2]" />
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Issue Date (DD-MM-YYYY) *</label>
-              <input id="recIssueDate" type="text" placeholder="e.g. 12-04-2021" required class="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-[#4b91e2]" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Date of Expire (DD-MM-YYYY) *</label>
-              <input id="recExpiryDate" type="text" placeholder="e.g. 12-04-2026" required class="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-xl focus:outline-none focus:border-[#4b91e2]" />
-            </div>
-          </div>
-
-          <button type="submit" id="saveBtn" class="w-full bg-[#4b91e2] hover:bg-[#3b82d6] text-white font-semibold py-3 rounded-xl text-sm shadow transition cursor-pointer">
-            Save Record &amp; Upload to GitHub
-          </button>
         </form>
       </section>
 
-      <!-- Saved Records List -->
-      <section class="bg-white rounded-2xl shadow-md border border-gray-200 p-5">
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="text-base font-bold text-[#1f4226]">Saved Records (<span id="recordCount">0</span>)</h3>
-          <button type="button" onclick="loadRecordsFromGitHub()" class="text-xs bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded-lg font-medium cursor-pointer">↻ Refresh</button>
-        </div>
-
-        <input id="filterInput" type="text" placeholder="Search by CNIC or Name..." class="w-full px-3.5 py-2 text-xs border border-gray-300 rounded-xl mb-3 focus:outline-none focus:border-[#1f4226]" />
-
-        <div id="recordsList" class="space-y-3">
-          <p class="text-xs text-gray-500 text-center py-4">Loading records from GitHub...</p>
+      <!-- Showcase Card 1 -->
+      <section id="smart-card-section" class="mt-7">
+        <div class="card-elevated relative overflow-hidden">
+          <div class="relative w-full aspect-[16/10] bg-gray-100 overflow-hidden">
+            <img
+              src="Image_289e11.JPG"
+              alt="State of the art driving licence"
+              class="w-full h-full object-cover object-center block"
+            />
+            <div class="red-ribbon-banner absolute bottom-0 left-0 w-[88%] py-2 px-4 z-10">
+              <p class="text-white font-normal text-[17px] tracking-wide leading-snug">
+                State of the art driving licence
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
+      <!-- Showcase Card 2 -->
+      <section id="eticketing-section" class="mt-7">
+        <div class="card-elevated relative overflow-hidden bg-white">
+          <img
+            src="Image_94a8c2.JPG"
+            alt="E-Ticketing Gadgets"
+            class="w-full h-auto block object-contain"
+          />
+        </div>
+      </section>
+
+      <!-- Showcase Card 3 -->
+      <section id="roving-eye-section" class="mt-7">
+        <div class="card-elevated relative overflow-hidden bg-white">
+          <img
+            src="ca3998.JPG"
+            alt="Roving Eye"
+            class="w-full h-auto block object-contain"
+          />
+        </div>
+      </section>
+
+      <!-- Social Section -->
+      <section id="footer-section" class="mt-9 mb-6 text-center">
+        <h3 class="text-[19px] font-bold text-[#1f2937] mb-4">Review Us On</h3>
+        <div class="flex items-center justify-center gap-4">
+          <a href="#footer-section" aria-label="Facebook Official" class="w-12 h-12 rounded-full bg-[#1a239e] hover:opacity-90 transition flex items-center justify-center text-white shadow-sm">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+          </a>
+          <a href="#footer-section" aria-label="X Twitter Official" class="w-12 h-12 rounded-full bg-[#388e46] hover:opacity-90 transition flex items-center justify-center text-white shadow-sm">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#footer-section" aria-label="Facebook Community" class="w-12 h-12 rounded-full bg-[#388e46] hover:opacity-90 transition flex items-center justify-center text-white shadow-sm">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+          </a>
+        </div>
+      </section>
     </div>
+
+    <!-- RESULT ONLY VIEW: Shown after Search -->
+    <section id="resultView" class="hidden pt-5">
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-5">
+        <div id="resultContent"></div>
+
+        <div class="mt-5 pt-3 border-t border-gray-100 text-center">
+          <button
+            type="button"
+            onclick="goHome()"
+            class="w-full bg-[#1f4226] hover:bg-[#16311c] text-white font-semibold text-sm py-2.5 rounded-xl shadow-xs transition cursor-pointer"
+          >
+            ← Back to Home / Search Again
+          </button>
+        </div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- Footer -->
+  <footer id="pageFooter" class="w-full relative pt-3 pb-5 bg-white">
+    <div class="w-full h-[2px] bg-[#2f7d44] relative">
+      <button
+        id="scrollTopBtn"
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+        aria-label="Scroll to top"
+        class="w-9 h-9 bg-[#11157a] hover:bg-[#1a209e] text-white flex items-center justify-center rounded-[3px] shadow-md absolute right-5 -top-7 transition cursor-pointer"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div class="max-w-md mx-auto px-4 pt-3 text-center text-[12px] text-gray-500">
+      Copyright © 2026 KPK DLIMS | <a href="javascript:void(0)" onclick="goHome()" class="text-gray-600 hover:underline">Verify Your License</a>
+    </div>
+  </footer>
+
   <script>
-    const defaultSVG = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='96' viewBox='0 0 80 96'%3E%3Crect width='80' height='96' fill='%23e5e7eb'/%3E%3Ccircle cx='40' cy='34' r='16' fill='%239ca3af'/%3E%3Cpath d='M14 88 C14 66, 66 66, 66 88 Z' fill='%239ca3af'/%3E%3C/svg%3E";
-    let ghConfig = { owner: '', repo: '', token: '' };
-    let recordsData = {};
-    let compressedDataUrl = null;
-    let compressedBase64Only = null;
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const saved = localStorage.getItem('kpk_gh_config');
-      if (saved) {
-        ghConfig = JSON.parse(saved);
-        document.getElementById('ghOwner').value = ghConfig.owner;
-        document.getElementById('ghRepo').value = ghConfig.repo;
-        document.getElementById('ghToken').value = ghConfig.token;
-        showDashboard();
-      }
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
     });
 
-    document.getElementById('recCnic').addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 13);
-    });
-
-    // Reliable Image Loader & Compressor
-    document.getElementById('photoInput').addEventListener('change', async (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      const statusEl = document.getElementById('photoStatus');
-      statusEl.textContent = 'Processing photo...';
-      statusEl.className = 'text-[10.5px] text-blue-600 font-semibold mt-1';
-
-      try {
-        const objectUrl = URL.createObjectURL(file);
-        const img = new Image();
-        img.onload = () => {
-          const canvas = document.createElement('canvas');
-          const maxW = 280;
-          const scale = Math.min(1, maxW / img.width);
-          canvas.width = Math.round(img.width * scale);
-          canvas.height = Math.round(img.height * scale);
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-          compressedDataUrl = canvas.toDataURL('image/jpeg', 0.72);
-          compressedBase64Only = compressedDataUrl.split(',')[1];
-          document.getElementById('photoPreview').src = compressedDataUrl;
-          URL.revokeObjectURL(objectUrl);
-
-          statusEl.textContent = '✓ Photo ready to upload!';
-          statusEl.className = 'text-[10.5px] text-emerald-700 font-semibold mt-1';
-        };
-        img.onerror = () => {
-          const reader = new FileReader();
-          reader.onload = (ev) => {
-            compressedDataUrl = ev.target.result;
-            compressedBase64Only = compressedDataUrl.split(',')[1];
-            document.getElementById('photoPreview').src = compressedDataUrl;
-            statusEl.textContent = '✓ Photo loaded!';
-            statusEl.className = 'text-[10.5px] text-emerald-700 font-semibold mt-1';
-          };
-          reader.readAsDataURL(file);
-        };
-        img.src = objectUrl;
-      } catch (err) {
-        statusEl.textContent = 'Photo load error: ' + err.message;
-        statusEl.className = 'text-[10.5px] text-red-600 font-semibold mt-1';
-      }
-    });
-
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      ghConfig = {
-        owner: document.getElementById('ghOwner').value.trim(),
-        repo: document.getElementById('ghRepo').value.trim(),
-        token: document.getElementById('ghToken').value.trim()
-      };
-
-      const btn = document.getElementById('connectBtn');
-      btn.disabled = true;
-      btn.textContent = 'Verifying GitHub Token...';
-
-      try {
-        const res = await fetch(`https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}`, {
-          headers: { Authorization: `token ${ghConfig.token}` }
-        });
-        if (!res.ok) throw new Error('Invalid Token or Repository Name');
-
-        localStorage.setItem('kpk_gh_config', JSON.stringify(ghConfig));
-        showDashboard();
-      } catch (err) {
-        alert('Connection Failed: ' + err.message);
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Connect & Open Dashboard';
-      }
-    });
-
-    function showDashboard() {
-      document.getElementById('loginCard').classList.add('hidden');
-      document.getElementById('dashboardArea').classList.remove('hidden');
-      document.getElementById('logoutBtn').classList.remove('hidden');
-      loadRecordsFromGitHub();
+    function closeMenu() {
+      mobileMenu.classList.add('hidden');
     }
 
-    function logoutAdmin() {
-      localStorage.removeItem('kpk_gh_config');
-      location.reload();
-    }
-
-    function showStatus(msg, isError = false) {
-      const el = document.getElementById('statusMsg');
-      el.textContent = msg;
-      el.className = `p-3.5 rounded-xl text-xs font-semibold ${isError ? 'bg-red-100 text-red-800 border border-red-300' : 'bg-emerald-100 text-emerald-900 border border-emerald-300'}`;
-      el.classList.remove('hidden');
-      setTimeout(() => el.classList.add('hidden'), 5000);
-    }
-
-    async function loadRecordsFromGitHub() {
-      const listEl = document.getElementById('recordsList');
-      listEl.innerHTML = '<p class="text-xs text-gray-500 text-center py-4">Syncing with GitHub...</p>';
-
-      try {
-        const res = await fetch(`https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/records.json?t=${Date.now()}`, {
-          headers: { Authorization: `token ${ghConfig.token}` }
-        });
-
-        if (res.status === 404) {
-          recordsData = {};
-        } else if (res.ok) {
-          const fileData = await res.json();
-          const decoded = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ''))));
-          recordsData = JSON.parse(decoded);
-        } else {
-          throw new Error('Could not load records.json');
-        }
-        renderRecordsList();
-      } catch (err) {
-        listEl.innerHTML = `<p class="text-xs text-red-600 text-center py-3">Error: ${err.message}</p>`;
-      }
-    }
-
-    async function putGitHubFile(path, base64Content, commitMessage) {
-      let existingSha = null;
-      const checkRes = await fetch(`https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}?t=${Date.now()}`, {
-        headers: { Authorization: `token ${ghConfig.token}` }
-      });
-      if (checkRes.ok) {
-        const existingData = await checkRes.json();
-        existingSha = existingData.sha;
-      }
-
-      const body = {
-        message: commitMessage,
-        content: base64Content
-      };
-      if (existingSha) body.sha = existingSha;
-
-      const putRes = await fetch(`https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}`, {
-        method: 'PUT',
-        headers: {
-          Authorization: `token ${ghConfig.token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-      });
-
-      if (!putRes.ok) {
-        const errData = await putRes.json();
-        throw new Error(errData.message || 'GitHub upload failed');
-      }
-      return await putRes.json();
-    }
-
-    document.getElementById('recordForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const cnic = document.getElementById('recCnic').value.trim();
-      const name = document.getElementById('recName').value.trim();
-      const fatherName = document.getElementById('recFather').value.trim();
-      const dob = document.getElementById('recDob').value.trim();
-      const licenseNo = document.getElementById('recLicenseNo').value.trim();
-      const licenseType = document.getElementById('recType').value.trim();
-      const issueDate = document.getElementById('recIssueDate').value.trim();
-      const expiryDate = document.getElementById('recExpiryDate').value.trim();
-
-      if (cnic.length < 12) {
-        alert('Please enter a valid 13-digit CNIC without dashes.');
-        return;
-      }
-
-      const saveBtn = document.getElementById('saveBtn');
-      saveBtn.disabled = true;
-      saveBtn.textContent = 'Uploading to GitHub...';
-
-      try {
-        const existing = recordsData[cnic] || {};
-        let photoPath = existing.photo || `photos/${cnic}.jpg`;
-        let finalPhotoData = existing.photoData || null;
-
-        if (compressedBase64Only && compressedDataUrl) {
-          photoPath = `photos/${cnic}.jpg`;
-          finalPhotoData = compressedDataUrl;
-          await putGitHubFile(photoPath, compressedBase64Only, `Upload photo for ${cnic}`);
-        }
-
-        recordsData[cnic] = {
-          photo: photoPath,
-          photoData: finalPhotoData,
-          cnic,
-          name,
-          fatherName,
-          dob,
-          licenseNo,
-          licenseType,
-          issueDate,
-          expiryDate,
-          renewalDate: expiryDate
-        };
-
-        const jsonStr = JSON.stringify(recordsData, null, 2);
-        const jsonBase64 = btoa(unescape(encodeURIComponent(jsonStr)));
-        await putGitHubFile('records.json', jsonBase64, `Update record for CNIC ${cnic}`);
-
-        showStatus(`Saved! CNIC ${cnic} aur photo live update ho chuki hai.`);
-        resetForm();
-        await loadRecordsFromGitHub();
-      } catch (err) {
-        showStatus('Error: ' + err.message, true);
-      } finally {
-        saveBtn.disabled = false;
-        saveBtn.textContent = 'Save Record & Upload to GitHub';
-      }
-    });
-
-    function editRecord(cnic) {
-      const r = recordsData[cnic];
-      if (!r) return;
-      document.getElementById('formTitle').textContent = 'Editing CNIC: ' + cnic;
-      document.getElementById('recCnic').value = r.cnic || '';
-      document.getElementById('recName').value = r.name || '';
-      document.getElementById('recFather').value = r.fatherName || '';
-      document.getElementById('recDob').value = r.dob || '';
-      document.getElementById('recLicenseNo').value = r.licenseNo || '';
-      document.getElementById('recType').value = r.licenseType || 'M.CYCLE+M.CAR/JEEP';
-      document.getElementById('recIssueDate').value = r.issueDate || '';
-      document.getElementById('recExpiryDate').value = r.expiryDate || r.renewalDate || '';
-      compressedDataUrl = null;
-      compressedBase64Only = null;
-      document.getElementById('photoInput').value = '';
-      document.getElementById('photoStatus').textContent = 'Photo select karein — instant preview & auto-compress.';
-      document.getElementById('photoStatus').className = 'text-[10.5px] text-gray-500 mt-1';
-
-      if (r.photoData) {
-        document.getElementById('photoPreview').src = r.photoData;
-      } else if (r.photo) {
-        document.getElementById('photoPreview').src = `https://raw.githubusercontent.com/${ghConfig.owner}/${ghConfig.repo}/main/${r.photo}?t=${Date.now()}`;
-      } else {
-        document.getElementById('photoPreview').src = defaultSVG;
-      }
+    function goHome() {
+      document.getElementById('resultView').classList.add('hidden');
+      document.getElementById('homeView').classList.remove('hidden');
+      document.getElementById('pageFooter').classList.remove('hidden');
+      document.getElementById('cnicInput').value = '';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    async function deleteRecord(cnic) {
-      if (!confirm(`Kya aap waqai CNIC ${cnic} ka record delete karna chahte hain?`)) return;
+    const cnicInput = document.getElementById('cnicInput');
+    cnicInput.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 13);
+    });
 
-      try {
-        delete recordsData[cnic];
-        const jsonStr = JSON.stringify(recordsData, null, 2);
-        const jsonBase64 = btoa(unescape(encodeURIComponent(jsonStr)));
-        await putGitHubFile('records.json', jsonBase64, `Delete record for CNIC ${cnic}`);
-        showStatus(`Deleted CNIC ${cnic} successfully.`);
-        await loadRecordsFromGitHub();
-      } catch (err) {
-        showStatus('Delete Error: ' + err.message, true);
-      }
-    }
+    const defaultAvatarSVG = "data:image/svg+xml;utf8," + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" width="180" height="220" viewBox="0 0 180 220">
+        <rect width="180" height="220" fill="#f3f4f6"/>
+        <circle cx="90" cy="78" r="36" fill="#9ca3af"/>
+        <path d="M30 205 C30 155, 150 155, 150 205 Z" fill="#9ca3af"/>
+      </svg>
+    `);
 
-    function resetForm() {
-      document.getElementById('formTitle').textContent = 'Add / Update License Record';
-      document.getElementById('recordForm').reset();
-      document.getElementById('recType').value = 'M.CYCLE+M.CAR/JEEP';
-      compressedDataUrl = null;
-      compressedBase64Only = null;
-      document.getElementById('photoPreview').src = defaultSVG;
-      document.getElementById('photoStatus').textContent = 'Photo select karein — instant preview & auto-compress.';
-      document.getElementById('photoStatus').className = 'text-[10.5px] text-gray-500 mt-1';
-    }
+    const GITHUB_RAW_BASE = "https://raw.githubusercontent.com/asadkpk183/Asadkpk/main";
 
-    document.getElementById('filterInput').addEventListener('input', renderRecordsList);
+    const verifyForm = document.getElementById('verifyForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultContent = document.getElementById('resultContent');
 
-    function renderRecordsList() {
-      const listEl = document.getElementById('recordsList');
-      const query = document.getElementById('filterInput').value.trim().toLowerCase();
-      const keys = Object.keys(recordsData).filter(k => {
-        const r = recordsData[k];
-        return k.includes(query) || (r.name && r.name.toLowerCase().includes(query));
-      });
+    verifyForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const cnic = cnicInput.value.trim();
 
-      document.getElementById('recordCount').textContent = Object.keys(recordsData).length;
-
-      if (keys.length === 0) {
-        listEl.innerHTML = '<p class="text-xs text-gray-500 text-center py-4">No records found yet. Add your first record above!</p>';
+      if (cnic.length < 12 || cnic.length > 13) {
+        alert('Please enter a valid 13-digit CNIC number without dashes.');
         return;
       }
 
-      listEl.innerHTML = keys.map(k => {
-        const r = recordsData[k];
-        const expDate = r.expiryDate || r.renewalDate || '-';
-        const issDate = r.issueDate || '-';
-        const dobVal = r.dob || '-';
-        const thumb = r.photoData
-          ? r.photoData
-          : (r.photo ? `https://raw.githubusercontent.com/${ghConfig.owner}/${ghConfig.repo}/main/${r.photo}?t=${Date.now()}` : defaultSVG);
-        return `
-          <div class="flex items-center justify-between gap-3 p-3 rounded-xl border border-gray-200 bg-gray-50">
-            <div class="flex items-center gap-3 min-w-0">
-              <img src="${thumb}" onerror="this.onerror=null;this.src='${defaultSVG}';" class="w-11 h-14 rounded-lg object-cover bg-white border border-gray-300 shrink-0" />
-              <div class="truncate">
-                <div class="text-sm font-bold text-gray-900 truncate">${r.name}</div>
-                <div class="text-xs font-mono text-gray-600">${r.cnic} • DOB: ${dobVal}</div>
-                <div class="text-[11px] text-gray-500">Lic: ${r.licenseNo} • Iss: ${issDate}</div>
-                <div class="text-[11px] text-gray-500">Exp: <span class="text-red-700 font-semibold">${expDate}</span></div>
-              </div>
-            </div>
-            <div class="flex flex-col gap-1.5 shrink-0">
-              <button onclick="editRecord('${r.cnic}')" class="text-xs bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold px-2.5 py-1 rounded-md cursor-pointer">Edit</button>
-              <button onclick="deleteRecord('${r.cnic}')" class="text-xs bg-red-100 hover:bg-red-200 text-red-800 font-semibold px-2.5 py-1 rounded-md cursor-pointer">Delete</button>
-            </div>
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Searching...';
+
+      let liveRecords = {};
+      try {
+        const res = await fetch(`${GITHUB_RAW_BASE}/records.json?t=${Date.now()}`);
+        if (res.ok) {
+          liveRecords = await res.json();
+        } else {
+          const localRes = await fetch(`records.json?t=${Date.now()}`);
+          if (localRes.ok) liveRecords = await localRes.json();
+        }
+      } catch (err) {
+        try {
+          const localRes = await fetch(`records.json?t=${Date.now()}`);
+          if (localRes.ok) liveRecords = await localRes.json();
+        } catch (e2) {}
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit';
+
+      const record = liveRecords[cnic];
+
+      document.getElementById('homeView').classList.add('hidden');
+      document.getElementById('pageFooter').classList.add('hidden');
+      document.getElementById('resultView').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (!record) {
+        resultContent.innerHTML = `
+          <div class="p-5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-sm font-medium text-center">
+            No Driving License record found for CNIC: <strong>${cnic}</strong>
           </div>
         `;
-      }).join('');
-    }
+        return;
+      }
+
+      let photoUrl = defaultAvatarSVG;
+      if (record.photoData) {
+        photoUrl = record.photoData;
+      } else if (record.photo) {
+        photoUrl = `${GITHUB_RAW_BASE}/${record.photo}?t=${Date.now()}`;
+      }
+
+      const expDate = record.expiryDate || record.renewalDate || '-';
+
+      resultContent.innerHTML = `
+        <div class="flex justify-center pt-1 pb-6">
+          <div class="w-40 h-48 rounded-xl overflow-hidden bg-white shadow-md border border-gray-200">
+            <img
+              src="${photoUrl}"
+              onerror="this.onerror=null;this.src='${defaultAvatarSVG}';"
+              alt="${record.name}"
+              class="w-full h-full object-cover object-top"
+            />
+          </div>
+        </div>
+
+        <div class="detail-box">
+          <div class="detail-label">Cnic</div>
+          <div class="detail-value">${record.cnic || '-'}</div>
+        </div>
+
+        <div class="detail-box">
+          <div class="detail-label">Name</div>
+          <div class="detail-value">${record.name || '-'}</div>
+        </div>
+
+        <div class="detail-box">
+          <div class="detail-label">Father Husband</div>
+          <div class="detail-value">${record.fatherName || '-'}</div>
+        </div>
+
+        <div class="detail-box">
+          <div class="detail-label">Date of Birth</div>
+          <div class="detail-value">${record.dob || '-'}</div>
+        </div>
+
+        <div class="detail-box">
+          <div class="detail-label">License Number</div>
+          <div class="detail-value">${record.licenseNo || '-'}</div>
+        </div>
+
+        <div class="detail-box">
+          <div class="detail-label">License Type</div>
+          <div class="detail-value">${record.licenseType || '-'}</div>
+        </div>
+
+        <div class="detail-box">
+          <div class="detail-label">Issue Date</div>
+          <div class="detail-value">${record.issueDate || '-'}</div>
+        </div>
+
+        <div class="detail-box mb-0">
+          <div class="detail-label">Date of Expire</div>
+          <div class="detail-value font-bold text-[#b91c1c]">${expDate}</div>
+        </div>
+      `;
+    });
   </script>
 </body>
 </html>
