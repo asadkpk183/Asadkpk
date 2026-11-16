@@ -105,12 +105,10 @@
     <!-- HOME VIEW: Search Box + 3 Showcase Cards + Socials -->
     <div id="homeView">
       <section id="verify-section" class="relative pt-8 pb-5 text-center overflow-hidden">
-        <!-- Background Emblem Watermark -->
         <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-15 z-0">
           <img src="bg.png" alt="Watermark" class="w-56 h-56 object-contain" />
         </div>
 
-        <!-- Title Words -->
         <h1 class="relative z-10 font-slab text-[26px] leading-[1.3] font-bold text-[#1f4226] tracking-tight">
           Welcome To KPK License<br />Verification Portal
         </h1>
@@ -338,6 +336,8 @@
         photoUrl = `${GITHUB_RAW_BASE}/${record.photo}?t=${Date.now()}`;
       }
 
+      const expireVal = record.expireDate || record.renewalDate || '-';
+
       resultContent.innerHTML = `
         <div class="flex justify-center pt-1 pb-6">
           <div class="w-40 h-48 rounded-xl overflow-hidden bg-white shadow-md border border-gray-200">
@@ -352,32 +352,42 @@
 
         <div class="detail-box">
           <div class="detail-label">Cnic</div>
-          <div class="detail-value">${record.cnic}</div>
+          <div class="detail-value">${record.cnic || '-'}</div>
         </div>
 
         <div class="detail-box">
           <div class="detail-label">Name</div>
-          <div class="detail-value">${record.name}</div>
+          <div class="detail-value">${record.name || '-'}</div>
         </div>
 
         <div class="detail-box">
           <div class="detail-label">Father Husband</div>
-          <div class="detail-value">${record.fatherName}</div>
+          <div class="detail-value">${record.fatherName || '-'}</div>
+        </div>
+
+        <div class="detail-box">
+          <div class="detail-label">Date of Birth</div>
+          <div class="detail-value">${record.dob || '-'}</div>
         </div>
 
         <div class="detail-box">
           <div class="detail-label">License Number</div>
-          <div class="detail-value">${record.licenseNo}</div>
+          <div class="detail-value">${record.licenseNo || '-'}</div>
         </div>
 
         <div class="detail-box">
           <div class="detail-label">License Type</div>
-          <div class="detail-value">${record.licenseType}</div>
+          <div class="detail-value">${record.licenseType || '-'}</div>
+        </div>
+
+        <div class="detail-box">
+          <div class="detail-label">Issue Date</div>
+          <div class="detail-value">${record.issueDate || '-'}</div>
         </div>
 
         <div class="detail-box mb-0">
-          <div class="detail-label">Renewal Date</div>
-          <div class="detail-value font-bold text-[#b91c1c]">${record.renewalDate}</div>
+          <div class="detail-label">Expire Date</div>
+          <div class="detail-value font-bold text-[#b91c1c]">${expireVal}</div>
         </div>
       `;
     });
