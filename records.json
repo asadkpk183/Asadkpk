@@ -53,5 +53,20 @@
     "issueDate": "10-04-2025",
     "expiryDate": "09-04-2032",
     "renewalDate": "09-04-2032"
+  },
+  "5650212320341": {
+    "photo": "photos/5650212320341.jpg",
+    "photoData": null,
+    "cnic": "5650212320341",
+    "name": "Zarif Khan",
+    "fatherName": "Juma Khan",
+    "dob": "15-01-2007",
+    "bloodGroup": "N/A",
+    "cityAddress": "P/O Mani Khwa kurram Tehsil Zilla Sherani",
+    "licenseNo": "1864563542568",
+    "licenseType": "M.CYCLE+M.CAR/JEEP",
+    "issueDate": "10-04-2025",
+    "expiryDate": "09-04-2032",
+    "renewalDate": "09-04-2032"
   }
 }
