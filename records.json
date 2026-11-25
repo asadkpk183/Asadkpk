@@ -68,5 +68,20 @@
     "issueDate": "15-07-2019",
     "expiryDate": "14-07-2028",
     "renewalDate": "14-07-2028"
+  },
+  "8220325608215": {
+    "photo": "photos/8220325608215.jpg",
+    "photoData": null,
+    "cnic": "8220325608215",
+    "name": "Safeer Ahmed",
+    "fatherName": "Noor Alam",
+    "dob": "01-01-1987",
+    "bloodGroup": "N/A",
+    "cityAddress": "Hardyala Gujraan P/O Garhi Duppata Muzafarabad AJ&K Peshwar",
+    "licenseNo": "1564563542555",
+    "licenseType": "M.CYCLE+M.CAR/JEEP",
+    "issueDate": "15-07-2019",
+    "expiryDate": "14-07-2028",
+    "renewalDate": "14-07-2028"
   }
 }
